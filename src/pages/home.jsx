@@ -3,8 +3,19 @@ import { FooterContainer } from "../containers/footer";
 import { FaqsContainer } from "../containers/faqs";
 import { HeaderContainer } from "../containers/header";
 import { Feature, OptForm } from "../components";
+import { useEffect } from "react";
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
+import { db } from "../lib/firebase.prod";
+import { addMovies } from "../seed";
 
 const Home = () => {
+
+
+  useEffect(() => {
+    addMovies();
+  }, []);
+
+
   return (
     <>
       <HeaderContainer>
