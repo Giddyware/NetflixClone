@@ -9,12 +9,9 @@ import { db } from "../lib/firebase.prod";
 import { addMovies } from "../seed";
 
 const Home = () => {
-
-
   useEffect(() => {
-    addMovies();
+    // addMovies();
   }, []);
-
 
   return (
     <>

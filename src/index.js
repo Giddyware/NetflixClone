@@ -3,14 +3,18 @@ import ReactDOM from "react-dom/client";
 import "normalize.css";
 
 import App from "./App";
+
 import { GlobalStyles } from "./globalStyles";
-// import { app } from "./lib/firebase.prod";
+import { FirebaseContext } from "./context/firebase";
+import { app } from "./lib/firebase.prod";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <GlobalStyles />
-    <App />
+    <FirebaseContext.Provider value={{ app }}>
+      <GlobalStyles />
+      <App />
+    </FirebaseContext.Provider>
   </>
   // </React.StrictMode>
 );
