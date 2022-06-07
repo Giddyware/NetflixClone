@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FooterContainer } from "../containers/footer";
 import { HeaderContainer } from "../containers/header";
 import { FirebaseContext } from "../context/firebase";
@@ -9,7 +9,10 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Signin = () => {
   //TODO: useNavigate goes here
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectUrl = location.state?.path || "/";
 
   const { app } = useContext(FirebaseContext);
 
@@ -25,12 +28,13 @@ const Signin = () => {
     const authentication = getAuth();
     signInWithEmailAndPassword(authentication, emailAddress, password)
       .then((response) => {
-        navigate(ROUTES.BROWSE);
+        navigate(redirectUrl, { replace: true });
         sessionStorage.setItem(
           "Auth Token",
           response._tokenResponse.refreshToken
         );
       })
+
       .catch((err) => {
         setEmailAddress("");
         setPassword("");
