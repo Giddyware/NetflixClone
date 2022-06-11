@@ -1,3 +1,4 @@
+// import { BrowseContainer } from "../containers/browse";
 import { BrowseContainer } from "../containers/browse";
 import { useContent } from "../hooks";
 import selectionFilter from "../utils/selection-filter";
@@ -12,6 +13,7 @@ const Browse = () => {
 
   //TODO: Pass it to the browse container
 
+  // return <BrowseContainer slides={slides} />;
   return <BrowseContainer slides={slides} />;
 };
 export default Browse;

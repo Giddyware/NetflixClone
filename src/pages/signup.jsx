@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 
 import { FooterContainer } from "../containers/footer";
@@ -33,6 +34,12 @@ const Signup = () => {
     const authentication = getAuth();
     createUserWithEmailAndPassword(authentication, emailAddress, password)
       .then((response) => {
+        updateProfile(authentication.currentUser, {
+          displayName: firstName,
+          photoURL: Math.floor(Math.random() * 5) + 1,
+        });
+      })
+      .then((response) => {
         navigate(ROUTES.BROWSE);
       })
       .catch((err) => {
@@ -42,34 +49,6 @@ const Signup = () => {
       });
   };
 
-  // useEffect(() => {
-  //   handleSignUp();
-  // }, []);
-
-  // const registerWithEmailAndPassword = async (
-  //   firstName,
-  //   emailAddress,
-  //   password
-  // ) => {
-  //   try {
-  //     const res = await createUserWithEmailAndPassword(
-  //       auth,
-  //       emailAddress,
-  //       password
-  //     );
-  //     const user = res.user;
-  //     await addDoc(collection(db, "users"), {
-  //       uid: user.uid,
-  //       firstName,
-  //       authProvider: "local",
-  //       emailAddress,
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-  //     // alert(err.message);
-  //     console.log(err.message);
-  //   }
-  // };
   return (
     <>
       <HeaderContainer>
