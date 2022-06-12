@@ -2,17 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { Header, Loading } from "../components";
 import { SelectProfileContainer } from "./profile";
 import { FirebaseContext } from "../context/firebase";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import logo from "../logo.svg";
 import * as ROUTES from "../constants/routes";
+import { useNavigate } from "react-router-dom";
 // import { auth } from "../lib/firebase.prod";
 
 export const BrowseContainer = ({ slide }) => {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { firebase } = useContext(FirebaseContext);
   const auth = getAuth();
+  const navigate = useNavigate();
   const user = auth.currentUser || {};
 
   useEffect(() => {
@@ -32,12 +35,23 @@ export const BrowseContainer = ({ slide }) => {
             <Header.TextLink>Films</Header.TextLink>
           </Header.Group>
           <Header.Group>
+            <Header.Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
                 <Header.Group>
                   <Header.Picture src={user.photoURL} />
                   <Header.TextLink>{user.displayName}</Header.TextLink>
+                </Header.Group>
+                <Header.Group>
+                  <Header.TextLink
+                    onClick={() => signOut(auth).then(navigate("/"))}
+                  >
+                    Sign Out
+                  </Header.TextLink>
                 </Header.Group>
               </Header.Dropdown>
             </Header.Profile>
@@ -52,6 +66,7 @@ export const BrowseContainer = ({ slide }) => {
             he projects in a futile attempt to feel like he's part of the world
             around him.
           </Header.Text>
+          <Header.PlayButton>Play</Header.PlayButton>
         </Header.Feature>
       </Header>
     </>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 // import { Background, ButtonLink, Container, Logo } from "./styles/header";
@@ -9,8 +10,14 @@ import {
   Feature,
   Text,
   Picture,
+  Search,
+  Profile,
+  Dropdown,
   FeatureCallOut,
   Link,
+  SearchIcon,
+  PlayButton,
+  SearchInput,
   Group,
 } from "./styles/header";
 export default function Header({ bg = true, children, ...restProps }) {
@@ -29,17 +36,43 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
 
-Header.Text = function HeaderText({ children, ...restProps }) {
-  return <Text {...restProps}>{children}</Text>;
+Header.Search = function HeaderSearch({
+  searchTerm,
+  setSearchTerm,
+  ...restProps
+}) {
+  const [searchActive, setSearchActive] = useState(false);
+
+  return (
+    <Search {...restProps}>
+      <SearchIcon
+        onClick={() => setSearchActive((searchActive) => !searchActive)}
+        data-testid="search-click"
+      >
+        <img src="/images/icons/search.png" alt="Search" />
+      </SearchIcon>
+      <SearchInput
+        value={searchTerm}
+        onChange={({ target }) => setSearchTerm(target.value)}
+        placeholder="Search films and series"
+        active={searchActive}
+        data-testid="search-input"
+      />
+    </Search>
+  );
 };
 
 Header.Text = function HeaderText({ children, ...restProps }) {
   return <Text {...restProps}>{children}</Text>;
 };
 
+Header.Text = function HeaderText({ children, ...restProps }) {
+  return <Text {...restProps}>{children}</Text>;
+};
 
-
-
+Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
+  return <Dropdown {...restProps}>{children}</Dropdown>;
+};
 
 Header.Picture = function HeaderPicture({ src, ...restProps }) {
   return <Picture {...restProps} src={`/images/users/${src}.png`} />;
@@ -54,6 +87,14 @@ Header.FeatureCallOut = function HeaderFeatureCallOut({
   ...restProps
 }) {
   return <FeatureCallOut {...restProps}>{children}</FeatureCallOut>;
+};
+
+Header.Profile = function HeaderProfile({ children, ...restProps }) {
+  return <Profile {...restProps}>{children}</Profile>;
+};
+
+Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
+  return <PlayButton {...restProps}>{children}</PlayButton>;
 };
 
 Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
