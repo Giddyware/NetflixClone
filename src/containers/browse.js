@@ -7,6 +7,7 @@ import logo from "../logo.svg";
 import { FooterContainer } from "./footer";
 import * as ROUTES from "../constants/routes";
 import { useNavigate } from "react-router-dom";
+import Fuse from "fuse.js";
 // import { auth } from "../lib/firebase.prod";
 
 export const BrowseContainer = ({ slides }) => {
@@ -30,6 +31,20 @@ export const BrowseContainer = ({ slides }) => {
   useEffect(() => {
     setSlideRows(slides[category]);
   }, [slides, category]);
+
+  // Live Search feature using fuse.js
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ["data.description", "data.title", "data.genre"],
+    });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [searchTerm]);
 
   return profile.displayName ? (
     <>

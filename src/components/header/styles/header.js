@@ -4,11 +4,20 @@ import { Link as ReachRouterLink } from "react-router-dom";
 export const Background = styled.div`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.35),
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
+    ),
+    url(${({ src }) =>
+    src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
+      top left / cover no-repeat; */
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
     ),
     url(${({ src }) =>
         src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
@@ -110,7 +119,7 @@ export const SearchIcon = styled.button`
 export const ButtonLink = styled(ReachRouterLink)`
   display: block;
   background-color: #e50914;
-  width: 84px;
+  /* width: 84px; */
   height: fit-content;
   color: white;
   border: 0;
@@ -119,6 +128,7 @@ export const ButtonLink = styled(ReachRouterLink)`
   padding: 8px 17px;
   cursor: pointer;
   text-decoration: none;
+  white-space: nowrap;
 
   &:hover {
     background: #f40612;

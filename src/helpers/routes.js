@@ -7,6 +7,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
+import * as ROUTES from "../constants/routes";
 
 // export const IsUserRedirect = ({ user, loggedInPath, children, ...rest }) => {
 //   let navigate = useNavigate();
@@ -46,7 +47,7 @@ import {
 export const RequireAuth = ({ user, children }) => {
   const location = useLocation();
   if (!user) {
-    return <Navigate to="/login" state={{ path: location.pathname }} />;
+    return <Navigate to={ROUTES.SIGN_IN} state={{ path: location.pathname }} />;
   }
   return children;
 };
