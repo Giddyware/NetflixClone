@@ -7,7 +7,9 @@ export function FooterContainer() {
       <Footer.Break />
       <Footer.Row>
         <Footer.Column>
-          <Footer.Link href="#">FAQ</Footer.Link>
+          <Footer.Link href="https://help.netflix.com/en/node/412">
+            FAQ
+          </Footer.Link>
           <Footer.Link href="#">Investor</Footer.Link>
           <Footer.Link href="#">Ways to Watch</Footer.Link>
           <Footer.Link href="#">Coperate Information</Footer.Link>
@@ -15,7 +17,9 @@ export function FooterContainer() {
         </Footer.Column>
 
         <Footer.Column>
-          <Footer.Link href="#">Help Center</Footer.Link>
+          <Footer.Link href="https://help.netflix.com/en/">
+            Help Center
+          </Footer.Link>
           <Footer.Link href="#">Jobs</Footer.Link>
           <Footer.Link href="#">Terms of Use</Footer.Link>
           <Footer.Link href="#">Contact Us</Footer.Link>
@@ -25,7 +29,9 @@ export function FooterContainer() {
           <Footer.Link href="#">Account</Footer.Link>
           <Footer.Link href="#">Redeem Gift Cards</Footer.Link>
           <Footer.Link href="#">Privacy</Footer.Link>
-          <Footer.Link href="https://fast.com">Speed Test</Footer.Link>
+          <Footer.Link href="https://fast.com" target="_blank">
+            Speed Test
+          </Footer.Link>
         </Footer.Column>
 
         <Footer.Column>
