@@ -34,6 +34,9 @@ const Signin = () => {
           response._tokenResponse.refreshToken
         );
       })
+      .then((response) => {
+        navigate(ROUTES.BROWSE);
+      })
 
       .catch((err) => {
         setEmailAddress("");
