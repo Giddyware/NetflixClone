@@ -19,8 +19,17 @@ const Signin = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [messageUsername, setMessageUsername] = useState("");
 
   const isInvalid = password === "" || emailAddress === "";
+
+  const handleBur = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    if (value == "") {
+      setMessageUsername("Please enter a valid email or phone number.");
+    }
+  };
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -57,14 +66,26 @@ const Signin = () => {
               placeholder="Email address"
               value={emailAddress}
               onChange={({ target }) => setEmailAddress(target.value)}
+              onBlur={handleBur}
             />
+            {messageUsername && (
+              <Form.TextSmall style={{ marginTop: "-13px", color: "#e87c03" }}>
+                Please enter a valid email or phone number.
+              </Form.TextSmall>
+            )}
             <Form.Input
               type="password"
               value={password}
               autoComplete="off"
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
+              onBlur={handleBur}
             />
+            {messageUsername && (
+              <Form.TextSmall style={{ marginTop: "-13px", color: "#e87c03" }}>
+                Your password must contain between 9 and 60 characters.
+              </Form.TextSmall>
+            )}
             <Form.Submit
               disabled={isInvalid}
               type="submit"
