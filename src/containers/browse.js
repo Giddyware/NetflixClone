@@ -80,7 +80,7 @@ export const BrowseContainer = ({ slides }) => {
                 </Header.Group>
                 <Header.Group>
                   <Header.TextLink
-                    onClick={() => signOut(auth).then(navigate("/"))}
+                    onClick={() => signOut(auth).then(navigate("/login"))}
                   >
                     Sign Out
                   </Header.TextLink>
