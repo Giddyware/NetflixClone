@@ -8,7 +8,7 @@ Netflix clone with Netflix like UI and functionalities built using React.js and 
 
 ## Demo
 
-[LIVE](https://nc-ps.vercel.app/)
+[LIVE](https://net-frontendsite.netlify.app/)
 
 
 ## Screenshots
@@ -63,7 +63,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/Pinqua/Netflix-Clone.git
+  git clone https://github.com/Giddware/Netflix-Clone.git
 ```
 
 Go to the project directory
